@@ -6,10 +6,13 @@ import { useRouter } from "next/router";
 
 
 
-export const Pokemon:FC<SmallPokemon> = ({id,image,name,xs,sm,md,xl}) => {
+export const Pokemon:FC<SmallPokemon> = ({pokemon,id,image,name,xs,sm,md,xl,setArrayFav,}) => {
   const router = useRouter();
-  const handleClick = (id:any) => {
-    router.push(`/pokemon/${id}`)
+  const handleClick = (e:any ,id:any) => {
+    if(e.target.classList.value !== 'button-fav'){
+      router.push(`/pokemon/${id}`)
+    }
+  
   }
 
 
@@ -19,8 +22,8 @@ export const Pokemon:FC<SmallPokemon> = ({id,image,name,xs,sm,md,xl}) => {
        <Card  
        isHoverable 
        isPressable 
-       onClick={()=>{
-      handleClick(id+1);
+       onClick={(event)=>{
+      handleClick(event,id+1);
     }}>
        <Card.Body>
            
@@ -32,8 +35,22 @@ export const Pokemon:FC<SmallPokemon> = ({id,image,name,xs,sm,md,xl}) => {
         
         </Card.Body>
         <Card.Footer>
-          <Row justify='center'>
-          <Text transform='capitalize' h4>{name}</Text>
+          <Row css={{
+            justifyContent: 'space-between',
+          }}>
+          <Text transform='capitalize' h4 css={{
+            flex: 4,
+            textAlign: 'center',
+          }}>{name}</Text>
+          <button className="button-fav" style={
+            {flex: 1,
+             cursor: 'pointer',
+            }
+            
+          }
+          onClick={()=>{
+            setArrayFav(pokemon);
+          }}>Fav</button>
           </Row>
         </Card.Footer>
         </Card>

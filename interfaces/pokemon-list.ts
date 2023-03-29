@@ -6,6 +6,7 @@ export interface PokemonList {
 }
 
 export interface SmallPokemon {
+    pokemon:any;
     name: string;
     url?:  string;
     image?:  any;
@@ -14,6 +15,16 @@ export interface SmallPokemon {
     sm?:number;
     md?:number;
     xl?:number;
+    setArrayFav?: any;
 }
+
+export interface HomeProps {
+    setTheme: Function,
+    themeState: string,
+    pokemons?:any,
+    setArrayFav: Function,
+    favPoke:SmallPokemon[],
+  }
+  
 
 // ,xs,sm,md,xl

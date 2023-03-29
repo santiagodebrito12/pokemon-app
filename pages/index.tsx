@@ -5,17 +5,20 @@ import { GetStaticProps } from "next";
 import NextApiResponse from 'next';
 import pokeApi from '../api/poke';
 import { useState } from "react";
-import { PokemonList, SmallPokemon } from "@/interfaces";
+import { PokemonList, SmallPokemon, HomeProps } from "@/interfaces";
 import { Pokemon } from "@/components/pokemon";
+// interface HomeProps {
+//   setTheme: Function,
+//   themeState: string,
+//   pokemons:SmallPokemon[],
+// }
 
-interface HomeProps {
-  setTheme: Function,
-  themeState: string,
-  pokemons:SmallPokemon[],
-}
-
-export default function Home({setTheme,themeState,pokemons}: HomeProps) {
+export default function Home({setTheme,themeState,pokemons,setArrayFav}: HomeProps) {
   const [pokeArray, setpokeArray] = useState<SmallPokemon[]>(pokemons);
+
+  
+  
+
 
   return (
     <Layout title='Pokemon App props' themeState={themeState} setTheme={setTheme}>
@@ -28,7 +31,7 @@ export default function Home({setTheme,themeState,pokemons}: HomeProps) {
         const image =  `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id+1}.svg`;
       
           return(
-            <Pokemon key={id} id={id} image={image} name={name} url={url} xs={6} sm={4} md={2} xl={1}/>
+            <Pokemon  pokemon={pokemon} key={id} id={id} image={image} name={name} url={url} xs={6} sm={4} md={2} xl={1} setArrayFav={setArrayFav}/>
           )
         })}
        

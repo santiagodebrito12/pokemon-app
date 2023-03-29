@@ -36,7 +36,11 @@ export const NavBar = ({themeState,setTheme}:navBarProps) => {
                 handleClick();
             }}>okemon</Text>
              <Spacer css={{flex:1}}/>
-             <Text  h2>Favoritos</Text>
+             <Text  css={{
+                cursor:'pointer',
+             }} h2 onClick={()=>{
+                router.push('/favoritos');
+             }}>Favoritos</Text>
                 <Button color="gradient" css={{
                     marginLeft:'20px',
                 }} onPress={()=>{
